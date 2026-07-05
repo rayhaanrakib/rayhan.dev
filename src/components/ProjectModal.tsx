@@ -1,8 +1,8 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { X, ExternalLink, ChevronRight } from 'lucide-react';
-import { GithubIcon } from './icons';
-import type { Project } from '@/lib/api';
+import { useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ExternalLink, Calendar, Layers, AlertTriangle } from "lucide-react";
+import { GithubIcon } from "./icons";
+import type { Project } from "@/lib/api";
 
 interface ProjectModalProps {
   project: Project;
@@ -10,216 +10,257 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  // const scrollRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const scrollPositionRef = useRef(0);
 
-  // Focus trap and scroll lock
+  // ── Ultra-simple, bulletproof scroll lock ──
   useEffect(() => {
-    // Save previously focused element
     previousActiveElement.current = document.activeElement as HTMLElement;
+    scrollPositionRef.current = window.scrollY;
 
-    // Lock body scroll
-    document.body.style.overflow = 'hidden';
+    // Lock the body COMPLETELY
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPositionRef.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.overflow = "hidden";
 
-    // Focus the close button
-    closeButtonRef.current?.focus();
+    containerRef.current?.focus();
 
     return () => {
-      // Restore scroll
-      document.body.style.overflow = '';
-      // Return focus to trigger element
+      // Restore everything EXACTLY
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollPositionRef.current);
+
       previousActiveElement.current?.focus();
     };
   }, []);
 
-  // Handle Escape key
+  // ── Escape key + focus trap ──
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
+        return;
       }
 
-      // Focus trap
-      if (e.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      if (e.key === "Tab" && containerRef.current) {
+        const focusable = containerRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])',
         );
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
 
-        if (e.shiftKey && document.activeElement === firstElement) {
+        if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
-          lastElement?.focus();
-        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
           e.preventDefault();
-          firstElement?.focus();
+          first?.focus();
         }
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  // Handle backdrop click
-  const handleBackdropClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  }, [onClose]);
+  const isPlaceholderLink = useCallback(
+    (url: string) => !url || url === "#",
+    [],
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-      onClick={handleBackdropClick}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
-
-      {/* Modal */}
-      <motion.div
-        ref={modalRef}
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-hidden glass-card rounded-xl"
-      >
-        {/* Close button */}
-        <button
-          ref={closeButtonRef}
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[100]">
+        {/* Backdrop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
+          aria-hidden="true"
+        />
 
-        {/* Scrollable content */}
-        <div className="overflow-y-auto max-h-[90vh] overscroll-contain">
-          {/* Hero Image */}
-          <div className="relative h-48 sm:h-56">
-            <img
-              src={project.coverImage}
-              alt={project.name}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        {/* Centering wrapper */}
+        <div className="absolute inset-0 flex items-end justify-center md:items-center md:p-8 lg:p-12">
+          <motion.div
+            ref={containerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+            tabIndex={-1}
+            initial={{ opacity: 0, scale: 0.96, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 24 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="glass-card relative flex w-full max-h-[92vh] md:max-h-[78vh] flex-col overflow-hidden rounded-t-2xl outline-none md:max-w-4xl md:rounded-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={onClose}
+              className="absolute right-3 top-3 z-10 rounded-full bg-black/40 p-2 text-white/50 transition-colors hover:text-white hover:bg-white/10"
+              aria-label="Close project details"
+            >
+              <X size={18} />
+            </button>
 
-            <div className="absolute bottom-4 left-6 right-16">
-              <span className="inline-block px-2 py-0.5 text-xs bg-white/10 backdrop-blur-sm text-white/70 rounded mb-2">
-                {project.category} • {project.timeline}
-              </span>
-              <h2 id="modal-title" className="font-display text-2xl sm:text-3xl font-bold text-white">
-                {project.name}
-              </h2>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="p-6 sm:p-8 space-y-8">
-            {/* Action Links */}
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 bg-accent text-black rounded-md font-medium hover:bg-[#a5e0fc] transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 glass text-white/80 rounded-md font-medium hover:bg-white/10 transition-colors"
-              >
-                <GithubIcon className="w-4 h-4" />
-                Source Code
-              </a>
-            </div>
-
-            {/* Description */}
-            <div>
-              <h3 className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3">
-                // about
-              </h3>
-              <p className="text-white/60 leading-relaxed">{project.description}</p>
-            </div>
-
-            {/* Tech Stack */}
-            <div>
-              <h3 className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3">
-                // tech_stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1.5 text-sm bg-accent/10 text-accent rounded border border-accent/20"
-                  >
-                    {tech}
+            {/* ── Scrollable inner content ── */}
+            <div
+              // ref={scrollRef}
+              className="overflow-y-auto overscroll-contain flex-1 min-h-0"
+            >
+              <div className="grid gap-6 p-5 md:p-7 lg:grid-cols-2 lg:items-start">
+                {/* ─── LEFT COLUMN ─── */}
+                <div>
+                  {/* Eyebrow */}
+                  <span className="font-mono text-[11px] text-[#7dd3fc]/50 uppercase tracking-wider mb-1.5 inline-block">
+                    // project.{project.slug}
                   </span>
-                ))}
-              </div>
-            </div>
 
-            {/* Metrics */}
-            <div>
-              <h3 className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3">
-                // metrics
-              </h3>
-              <div className="grid grid-cols-3 gap-3">
-                {project.metrics.map((metric) => (
-                  <div key={metric.label} className="glass rounded-lg p-4 text-center">
-                    <p className="font-display text-xl font-bold text-accent">{metric.value}</p>
-                    <p className="text-xs text-white/40 mt-1">{metric.label}</p>
+                  {/* Title */}
+                  <h2
+                    id="project-modal-title"
+                    className="font-display text-2xl font-bold leading-tight text-white md:text-3xl"
+                  >
+                    {project.name}
+                  </h2>
+
+                  {/* Description */}
+                  <p className="mt-3 text-sm leading-relaxed text-white/50 md:text-base">
+                    {project.description}
+                  </p>
+
+                  {/* Timeline + category chips */}
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full glass px-2.5 py-1 text-[11px] font-medium text-white/50">
+                      <Calendar size={12} /> {project.timeline}
+                    </span>
+                    <span className="inline-flex items-center rounded-full glass px-2.5 py-1 text-[11px] font-medium text-white/35">
+                      {project.category}
+                    </span>
                   </div>
-                ))}
+
+                  {/* CTA Buttons */}
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {!isPlaceholderLink(project.liveUrl) ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#7dd3fc] px-4 py-2 text-sm font-semibold text-black transition-shadow hover:shadow-[0_0_20px_rgba(125,211,252,0.3)]"
+                      >
+                        <ExternalLink size={14} /> Live Site
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/25">
+                        <ExternalLink size={14} /> Live link coming soon
+                      </span>
+                    )}
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/5 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 ${
+                        isPlaceholderLink(project.githubUrl) ? "opacity-40" : ""
+                      }`}
+                    >
+                      <GithubIcon className="w-4 h-4" /> GitHub
+                    </a>
+                  </div>
+
+                  {/* 3 Highlight Features */}
+                  <section className="mt-6">
+                    <h3 className="mb-3 font-display text-base font-semibold text-white">
+                      Key Highlights
+                    </h3>
+                    <div className="space-y-2.5">
+                      {project.highlightFeatures.map((feature, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + i * 0.06 }}
+                          className="flex items-start gap-2.5 rounded-xl glass p-3"
+                        >
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#7dd3fc]/10 text-[11px] font-bold text-[#7dd3fc]">
+                            {i + 1}
+                          </span>
+                          <span className="text-[13px] leading-relaxed text-white/50">
+                            {feature}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </section>
+                </div>
+
+                {/* ─── RIGHT COLUMN ─── */}
+                <div className="space-y-4">
+                  {/* Cover image */}
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl glass">
+                    <img
+                      src={project.coverImage}
+                      alt={project.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl" />
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="glass rounded-xl p-4">
+                    <div className="mb-3 flex items-center gap-2 text-[#7dd3fc]">
+                      <Layers size={16} />
+                      <h3 className="font-display text-sm font-semibold text-white">
+                        Tech Stack
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full bg-white/5 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white/45"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Challenges */}
+                  <div className="glass rounded-xl p-4">
+                    <div className="mb-3 flex items-center gap-2 text-[#7dd3fc]">
+                      <AlertTriangle size={16} />
+                      <h3 className="font-display text-sm font-semibold text-white">
+                        Challenges
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {project.challenges.map((challenge, i) => (
+                        <li
+                          key={i}
+                          className="text-[13px] leading-relaxed text-white/40"
+                        >
+                          {challenge}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Challenges */}
-            <div>
-              <h3 className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3">
-                // challenges
-              </h3>
-              <ul className="space-y-3">
-                {project.challenges.map((challenge, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/50">
-                    <ChevronRight className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                    <span>{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Future Improvements */}
-            <div>
-              <h3 className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3">
-                // future_plans
-              </h3>
-              <ul className="space-y-2">
-                {project.improvements.map((improvement, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/40">
-                    <span className="text-accent">→</span>
-                    <span>{improvement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </AnimatePresence>
   );
 }

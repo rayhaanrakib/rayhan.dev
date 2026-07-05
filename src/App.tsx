@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -88,9 +87,6 @@ function AmbientBackground() {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-
-  // Initialize smooth scrolling
-  useSmoothScroll();
 
   return (
     <>
