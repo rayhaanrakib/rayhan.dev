@@ -102,8 +102,8 @@
         { "label": "File Types", "value": "20+", "note": "Supported formats" },
         { "label": "Build Time", "value": "3 days", "note": "Solo development" }
       ],
-      "liveUrl": "#",
-      "githubUrl": "#"
+      "liveUrl": "https://rayhaanrakib-my-drive.vercel.app",
+      "githubUrl": "https://github.com/ArcCoderBD/rayhaanrakib-MyDrive"
     }
   ]
 }
