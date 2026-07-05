@@ -64,7 +64,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Ambient background */}
       <div className="absolute top-1/2 -translate-y-1/2 -left-64 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[150px]" />
 

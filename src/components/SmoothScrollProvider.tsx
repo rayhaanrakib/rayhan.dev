@@ -17,10 +17,14 @@ type ScrollToOptions = Parameters<Lenis['scrollTo']>[1];
 
 type SmoothScrollContextValue = {
   scrollTo: (target: string | number, options?: ScrollToOptions) => void;
+  stop: () => void;
+  start: () => void;
 };
 
 const SmoothScrollContext = createContext<SmoothScrollContextValue>({
   scrollTo: () => {},
+  stop: () => {},
+  start: () => {},
 });
 
 export function useSmoothScroll() {
@@ -112,8 +116,16 @@ export function SmoothScrollProvider({
     }
   };
 
+  const stop = () => {
+    lenisRef.current?.stop();
+  };
+
+  const start = () => {
+    lenisRef.current?.start();
+  };
+
   return (
-    <SmoothScrollContext.Provider value={{ scrollTo }}>
+    <SmoothScrollContext.Provider value={{ scrollTo, stop, start }}>
       {children}
     </SmoothScrollContext.Provider>
   );

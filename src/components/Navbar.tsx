@@ -55,15 +55,20 @@ function LiveClock() {
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const activeSection = useActiveSection(navLinks.map((l) => l.id));
-  const { scrollTo } = useSmoothScroll();
+  const { scrollTo, stop, start } = useSmoothScroll();
 
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
+      stop();
     } else {
       document.body.style.overflow = '';
+      start();
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+      start();
+    };
   }, [mobileOpen]);
 
   const handleNavClick = (id: string) => {
@@ -73,13 +78,13 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/30">
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/30 w-full">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <button
               onClick={() => handleNavClick('hero')}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 shrink-0"
             >
               <img className='w-4 h-4' src="/images/logo.svg" alt="Rakibul Islam Rayhan" />
 
@@ -89,7 +94,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-6 lg:gap-8 shrink-0">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
@@ -109,14 +114,14 @@ export default function Navbar() {
             </div>
 
             {/* Live Clock — replaces Resume button */}
-            <div className="hidden md:block">
+            <div className="hidden md:block shrink-0">
               <LiveClock />
             </div>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 text-white/80"
+              className="md:hidden p-2 text-white/80 shrink-0"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -126,32 +131,42 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-40 md:hidden bg-black/95">
-          <div className="flex flex-col items-center justify-center h-full gap-6">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`text-2xl font-display font-medium transition-all duration-300 ${
-                  activeSection === link.id
-                    ? 'text-accent scale-110'
-                    : 'text-white/60 hover:text-white/80'
-                }`}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 md:hidden bg-black/95 overflow-hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-full gap-6 px-4 overflow-hidden">
+              {navLinks.map((link) => (
+                <motion.button
+                  key={link.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`text-2xl font-display font-medium transition-all duration-300 ${
+                    activeSection === link.id
+                      ? 'text-accent scale-110'
+                      : 'text-white/60 hover:text-white/80'
+                  }`}
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+              <a
+                href="https://drive.google.com/file/d/1aScmah_mpoAZw5wjZtPSoOjBDw1AmDHJ/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 px-6 py-3 text-black bg-accent rounded-md font-medium w-full text-center"
               >
-                {link.label}
-              </button>
-            ))}
-            <a
-              href="https://drive.google.com/file/d/1aScmah_mpoAZw5wjZtPSoOjBDw1AmDHJ/view?usp=sharing"
-              target="_blank"
-              className="mt-4 px-6 py-3 text-black bg-accent rounded-md font-medium"
-            >
-              View Resume
-            </a>
-          </div>
-        </div>
-      )}
+                View Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
