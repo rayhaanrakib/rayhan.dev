@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Calendar, Layers, AlertTriangle } from "lucide-react";
+import { X, ExternalLink, Calendar, Layers, AlertTriangle, CheckCircle } from "lucide-react";
 import { GithubIcon } from "./icons";
 import type { Project } from "@/lib/api";
 
@@ -203,22 +203,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       ))}
                     </div>
                   </section>
-                </div>
-
-                {/* ─── RIGHT COLUMN ─── */}
-                <div className="space-y-4">
-                  {/* Cover image */}
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl glass">
-                    <img
-                      src={project.coverImage}
-                      alt={project.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl" />
-                  </div>
-
                   {/* Tech Stack */}
-                  <div className="glass rounded-xl p-4">
+                  <div className="glass rounded-xl p-4 mt-6">
                     <div className="mb-3 flex items-center gap-2 text-[#00c8b3]">
                       <Layers size={16} />
                       <h3 className="font-display text-sm font-semibold text-white">
@@ -236,9 +222,22 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       ))}
                     </div>
                   </div>
+                </div>
+
+                {/* ─── RIGHT COLUMN ─── */}
+                <div className="space-y-4 mt-6">
+                  {/* Cover image */}
+                  <div className="relative aspect-16/10 overflow-hidden rounded-xl glass">
+                    <img
+                      src={project.coverImage}
+                      alt={project.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl" />
+                  </div>
 
                   {/* Challenges */}
-                  <div className="glass rounded-xl p-4">
+                  <div className="glass rounded-xl p-4 mt-6">
                     <div className="mb-3 flex items-center gap-2 text-[#00c8b3]">
                       <AlertTriangle size={16} />
                       <h3 className="font-display text-sm font-semibold text-white">
@@ -252,6 +251,25 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           className="text-[13px] leading-relaxed text-white/40"
                         >
                           {challenge}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* improvements */}
+                  <div className="glass rounded-xl p-4 mt-6">
+                    <div className="mb-3 flex items-center gap-2 text-[#00c8b3]">
+                      <CheckCircle size={16} />
+                      <h3 className="font-display text-sm font-semibold text-white">
+                        Improvements
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {project.improvements.map((improvement, i) => (
+                        <li
+                          key={i}
+                          className="text-[13px] leading-relaxed text-white/40"
+                        >
+                          {improvement}
                         </li>
                       ))}
                     </ul>
