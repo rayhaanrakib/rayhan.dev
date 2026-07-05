@@ -41,10 +41,9 @@ export default function Navbar() {
               onClick={() => handleNavClick('hero')}
               className="flex items-center gap-2"
             >
-              <div className="w-7 h-7 rounded-md bg-accent flex items-center justify-center">
-                <Terminal className="w-4 h-4 text-black" />
-              </div>
-              <span className="font-mono text-sm text-white/90 hidden sm:block">
+              <img className='w-4 h-4' src="/images/logo.svg" alt="Rakibul Islam Rayhan" />
+
+              <span className="font-mono text-sm text-white/90">
                 rayhan<span className="text-accent">.dev</span>
               </span>
             </button>
