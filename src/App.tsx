@@ -33,7 +33,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         transition={{ duration: 0.4, type: 'spring' }}
         className="relative mb-8"
       >
-          <img src="/public/images/favicon.ico" alt="Rakibul Islam Rayhan" />
+          <img src="/images/favicon.ico" alt="Rakibul Islam Rayhan" />
         <motion.div
           className="absolute -inset-3 rounded-xl border border-accent/50"
           animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
