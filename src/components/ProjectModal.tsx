@@ -11,7 +11,7 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  // const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
   const scrollPositionRef = useRef(0);
 
@@ -78,7 +78,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100]">
+      <div className="fixed inset-0 z-[100]" data-lenis-prevent>
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -102,7 +102,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 24 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-card relative flex w-full max-h-[92vh] md:max-h-[78vh] flex-col overflow-hidden rounded-t-2xl outline-none md:max-w-4xl md:rounded-2xl"
+            className="glass-card relative flex w-full h-[92vh] md:h-auto md:max-h-[78vh] flex-col overflow-hidden rounded-t-2xl outline-none md:max-w-4xl md:rounded-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -116,7 +116,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* ── Scrollable inner content ── */}
             <div
-              // ref={scrollRef}
+              ref={scrollRef}
+              data-lenis-prevent
               className="overflow-y-auto overscroll-contain flex-1 min-h-0"
             >
               <div className="grid gap-6 p-5 md:p-7 lg:grid-cols-2 lg:items-start">
