@@ -55,13 +55,16 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`text-sm transition-colors ${
+                  className={`text-sm transition-all duration-300 relative ${
                     activeSection === link.id
-                      ? 'text-accent'
+                      ? 'text-accent font-medium'
                       : 'text-white/50 hover:text-white/80'
                   }`}
                 >
                   {link.label}
+                  {activeSection === link.id && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent" />
+                  )}
                 </button>
               ))}
             </div>
@@ -98,10 +101,10 @@ export default function Navbar() {
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`text-2xl font-display font-medium ${
+                className={`text-2xl font-display font-medium transition-all duration-300 ${
                   activeSection === link.id
-                    ? 'text-accent'
-                    : 'text-white/60'
+                    ? 'text-accent scale-110'
+                    : 'text-white/60 hover:text-white/80'
                 }`}
               >
                 {link.label}

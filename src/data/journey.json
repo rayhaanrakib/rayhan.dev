@@ -3,10 +3,17 @@
     {
       "id": "ai-software-engineering",
       "year": "2026",
-      "title": "Next Level AI Driven Software Engineer",
+      "title": "Next Level Software Engineering",
       "type": "current",
-      "description": "Currently enrolled in Programming Hero's advanced AI-driven software engineering course. Learning cutting-edge AI/ML integration, scalable system design, and modern development workflows.",
-      "tags": ["AI Integration", "System Design", "Advanced Programming"]
+      "description": "Currently enrolled in Programming Hero's Next Level Software Engineering course. Expanding expertise in TypeScript, Node.js, Express, PostgreSQL, Prisma, Next.js, scalable backend architecture, authentication, cloud deployment, testing, and modern AI technologies including LLMs, LangChain, RAG, embeddings, and AI workflow automation.",
+      "tags": [
+        "TypeScript",
+        "Node.js",
+        "Next.js",
+        "PostgreSQL",
+        "Prisma",
+        "AI & LLMs"
+      ]
     },
     {
       "id": "build-projects",

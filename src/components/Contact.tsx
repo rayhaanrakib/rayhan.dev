@@ -112,81 +112,87 @@ export default function Contact() {
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-5"
+            className="space-y-4"
           >
-            {/* Status */}
-            <div className="glass-card rounded-xl p-5">
+            {/* Status Card */}
+            <div className="glass-card rounded-xl p-6">
               <div className="flex items-center gap-3">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-75" />
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-[#4ade80]" />
                 </span>
-                <span className="text-[#4ade80] text-sm">Available for work</span>
+                <span className="text-[#4ade80] text-sm font-medium">Available for work</span>
               </div>
             </div>
 
-            {/* Contact Methods */}
-            <motion.a
-              href={`mailto:${contact.email}`}
-              className="flex items-center gap-4 p-4 glass-card rounded-xl group"
-              whileHover={{ y: -2 }}
-            >
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <Mail className="w-5 h-5 text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-white/25">Email</p>
-                <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">{contact.email}</p>
-              </div>
-            </motion.a>
+            {/* Contact Methods Card */}
+            <div className="glass-card rounded-xl p-6 space-y-5">
+              <h4 className="font-mono text-xs text-white/25 uppercase tracking-wider mb-2">
+                Get in touch
+              </h4>
 
-            <motion.a
-              href={`tel:${contact.phone.replace(/\s/g, '')}`}
-              className="flex items-center gap-4 p-4 glass-card rounded-xl group"
-              whileHover={{ y: -2 }}
-            >
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <Phone className="w-5 h-5 text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-white/25">Phone</p>
-                <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">{contact.phone}</p>
-              </div>
-            </motion.a>
+              <motion.a
+                href={`mailto:${contact.email}`}
+                className="flex items-center gap-4 group"
+                whileHover={{ x: 2 }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <Mail className="w-5 h-5 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-white/25">Email</p>
+                  <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">{contact.email}</p>
+                </div>
+              </motion.a>
 
-            <motion.a
-              href={`https://wa.me/${contact.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 glass-card rounded-xl group"
-              whileHover={{ y: -2 }}
-            >
-              <div className="w-10 h-10 rounded-lg bg-[#25d366]/10 flex items-center justify-center group-hover:bg-[#25d366]/20 transition-colors">
-                <WhatsAppIcon className="w-5 h-5 text-[#25d366]" />
-              </div>
-              <div>
-                <p className="text-xs text-white/25">WhatsApp</p>
-                <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">Message me</p>
-              </div>
-            </motion.a>
+              <motion.a
+                href={`tel:${contact.phone.replace(/\s/g, '')}`}
+                className="flex items-center gap-4 group"
+                whileHover={{ x: 2 }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <Phone className="w-5 h-5 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-white/25">Phone</p>
+                  <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">{contact.phone}</p>
+                </div>
+              </motion.a>
 
-            {/* Social Links */}
-            <div className="glass-card rounded-xl p-5">
+              <motion.a
+                href={`https://wa.me/${contact.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 group"
+                whileHover={{ x: 2 }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#25d366]/10 flex items-center justify-center group-hover:bg-[#25d366]/20 transition-colors">
+                  <WhatsAppIcon className="w-5 h-5 text-[#25d366]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-white/25">WhatsApp</p>
+                  <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">Message me</p>
+                </div>
+              </motion.a>
+            </div>
+
+            {/* Social Links Card */}
+            <div className="glass-card rounded-xl p-6">
               <h4 className="font-mono text-xs text-white/25 uppercase tracking-wider mb-4">
                 Find me online
               </h4>
-              <div className="flex gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <motion.a
                   href={contact.github.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 p-3 bg-white/[0.03] rounded-lg text-white/40 hover:text-white/70 hover:bg-white/[0.06] transition-all"
+                  className="flex items-center justify-center gap-2 p-4 bg-white/[0.03] rounded-lg text-white/40 hover:text-white/70 hover:bg-white/[0.06] transition-all"
                   aria-label="GitHub"
                   whileHover={{ y: -2 }}
                 >
@@ -197,7 +203,7 @@ export default function Contact() {
                   href={contact.linkedin.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 p-3 bg-white/[0.03] rounded-lg text-white/40 hover:text-white/70 hover:bg-white/[0.06] transition-all"
+                  className="flex items-center justify-center gap-2 p-4 bg-white/[0.03] rounded-lg text-white/40 hover:text-white/70 hover:bg-white/[0.06] transition-all"
                   aria-label="LinkedIn"
                   whileHover={{ y: -2 }}
                 >
@@ -214,89 +220,94 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            className="flex flex-col"
           >
-            <form onSubmit={handleSubmit} className="glass-card rounded-xl p-6 space-y-5">
-              <div>
-                <label htmlFor="email" className="block text-sm text-white/40 mb-2">
-                  Your Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); setErrorMessage(''); }}
-                  placeholder="you@example.com"
-                  required
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-white/20 text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
-                />
+            <form onSubmit={handleSubmit} className="glass-card rounded-xl p-6 flex-1 flex flex-col justify-between">
+              <div className="space-y-5">
+                <div>
+                  <label htmlFor="email" className="block text-sm text-white/40 mb-2">
+                    Your Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); setErrorMessage(''); }}
+                    placeholder="you@example.com"
+                    required
+                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-white/20 text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all"
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <label htmlFor="message" className="block text-sm text-white/40 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    value={message}
+                    onChange={(e) => { setMessage(e.target.value); setErrorMessage(''); }}
+                    placeholder="Tell me about your project or idea..."
+                    required
+                    minLength={10}
+                    rows={6}
+                    className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-white/20 text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all resize-none"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm text-white/40 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => { setMessage(e.target.value); setErrorMessage(''); }}
-                  placeholder="Tell me about your project or idea..."
-                  required
-                  minLength={10}
-                  rows={5}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-lg text-white placeholder-white/20 text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-all resize-none"
-                />
-              </div>
-
-              {/* Error Message */}
-              {errorMessage && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-[#f87171] text-sm p-3 bg-[#f87171]/10 rounded-lg"
-                >
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMessage}</span>
-                </motion.div>
-              )}
-
-              {/* Success Message */}
-              {status === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-[#4ade80] text-sm p-3 bg-[#4ade80]/10 rounded-lg"
-                >
-                  <CheckCircle className="w-4 h-4 shrink-0" />
-                  <span>Message sent — I'll get back to you soon!</span>
-                </motion.div>
-              )}
-
-              <motion.button
-                type="submit"
-                disabled={status === 'sending'}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent text-black font-semibold rounded-lg hover:bg-[#a5e0fc] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: status === 'sending' ? 1 : 1.01 }}
-                whileTap={{ scale: status === 'sending' ? 1 : 0.99 }}
-              >
-                {status === 'sending' ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    Send Message
-                  </>
+              <div className="mt-6 space-y-4">
+                {/* Error Message */}
+                {errorMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-[#f87171] text-sm p-3 bg-[#f87171]/10 rounded-lg"
+                  >
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </motion.div>
                 )}
-              </motion.button>
 
-              <p className="text-xs text-white/20 text-center">
-                Or email directly at{' '}
-                <a href={`mailto:${contact.email}`} className="text-accent hover:underline">
-                  {contact.email}
-                </a>
-              </p>
+                {/* Success Message */}
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-[#4ade80] text-sm p-3 bg-[#4ade80]/10 rounded-lg"
+                  >
+                    <CheckCircle className="w-4 h-4 shrink-0" />
+                    <span>Message sent — I'll get back to you soon!</span>
+                  </motion.div>
+                )}
+
+                <motion.button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-accent text-black font-semibold rounded-lg hover:bg-[#a5e0fc] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: status === 'sending' ? 1 : 1.01 }}
+                  whileTap={{ scale: status === 'sending' ? 1 : 0.99 }}
+                >
+                  {status === 'sending' ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Send Message
+                    </>
+                  )}
+                </motion.button>
+
+                <p className="text-xs text-white/20 text-center">
+                  Or email directly at{' '}
+                  <a href={`mailto:${contact.email}`} className="text-accent hover:underline">
+                    {contact.email}
+                  </a>
+                </p>
+              </div>
             </form>
           </motion.div>
         </div>

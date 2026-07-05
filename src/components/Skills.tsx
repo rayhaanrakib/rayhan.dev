@@ -71,9 +71,6 @@ export default function Skills() {
           {allCategories.map((category, catIndex) => (
             <div key={category.name}>
               <div className="mb-5 flex items-center gap-3">
-                <span className="font-mono text-xs uppercase tracking-widest text-white/30">
-                  // {String(catIndex + 1).padStart(2, "0")}
-                </span>
                 <h3 className="font-display text-lg font-medium text-white md:text-xl">
                   {category.name}
                 </h3>
