@@ -1,0 +1,32 @@
+{
+  "education": [
+    {
+      "id": "bsc-titumir",
+      "degree": "Bachelor of Science (B.Sc.)",
+      "institution": "Govt. Titumir College",
+      "affiliation": "University of Dhaka",
+      "location": "Dhaka, Bangladesh",
+      "period": "2022 – Present",
+      "status": "appeared",
+      "statusNote": "Results awaited"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "programming-hero",
+      "name": "Complete Web Development Course",
+      "issuer": "Programming Hero",
+      "year": "2024",
+      "description": "Comprehensive full-stack web development covering React, Node.js, MongoDB, and modern deployment.",
+      "validationLink": "https://example.com/certificates/programming-hero"
+    },
+    {
+      "id": "shikhbe-shobai",
+      "name": "UI/UX Design Course",
+      "issuer": "Shikhbe Shobai",
+      "year": "2024",
+      "description": "User interface and experience design fundamentals with Figma and prototyping.",
+      "validationLink": "https://example.com/certificates/shikhbe-shobai"
+    }
+  ]
+}

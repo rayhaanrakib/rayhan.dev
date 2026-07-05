@@ -1,0 +1,20 @@
+{
+  "name": "Rakibul Islam Rayhan",
+  "designation": "Full-Stack Developer",
+  "tagline": "MERN Stack + PostgreSQL/Prisma",
+  "heroStatement": "I build end-to-end web experiences — from database schemas to polished interfaces.",
+  "phone": "+88 01540546014",
+  "email": "rayhaanrakib@gmail.com",
+  "github": "rayhaanrakib",
+  "linkedIn": "https://www.linkedin.com/in/rayhaanrakib",
+  "location": "Bangladesh",
+  "photoUrl": "/images/profile.jpg",
+  "resumeUrl": "1aScmah_mpoAZw5wjZtPSoOjBDw1AmDHJ",
+  "about": {
+    "intro": "I'm a developer who started with pure curiosity and basic web tinkering. What began as tweaking HTML templates evolved into building complete applications from scratch.",
+    "journey": "I started with frontend — React, Tailwind, JavaScript — and got serious about it by completing Programming Hero's web development course. That gave me structure: proper component architecture, state management, API integration. I also took a UI/UX course at Shikhbe Shobai, which changed how I think about interfaces — now I design before I code.",
+    "currentFocus": "Recently, I've been pushing into full-stack territory. I'm working with PostgreSQL, Prisma ORM, and cloud databases like NeonDB and Supabase. I want to own projects end-to-end — from the database schema to the deployment pipeline. TypeScript has become essential to my workflow.",
+    "workStyle": "I enjoy turning complex requirements into clean, intuitive interfaces. There's something satisfying about shipping a feature that just works — no friction, no confusion. I care about the details: loading states, error handling, responsive layouts that don't break on edge cases.",
+    "hobbies": "When I'm not coding, I write tutorials and documentation — explaining things forces me to actually understand them. I listen to a lot of tech and design podcasts during commutes. It keeps me connected to the broader industry conversation and exposes me to problems I haven't encountered yet."
+  }
+}

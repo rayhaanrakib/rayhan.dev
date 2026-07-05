@@ -1,0 +1,44 @@
+{
+  "milestones": [
+    {
+      "id": "ai-software-engineering",
+      "year": "2026",
+      "title": "Next Level AI Driven Software Engineer",
+      "type": "current",
+      "description": "Currently enrolled in Programming Hero's advanced AI-driven software engineering course. Learning cutting-edge AI/ML integration, scalable system design, and modern development workflows.",
+      "tags": ["AI Integration", "System Design", "Advanced Programming"]
+    },
+    {
+      "id": "build-projects",
+      "year": "2025",
+      "title": "Build Projects",
+      "type": "project",
+      "description": "Shipped multiple e-commerce projects, building complete shopping experiences from product catalogs to checkout and payment integration.",
+      "tags": ["E-Commerce", "Full-Stack", "Payment Integration"]
+    },
+    {
+      "id": "programming-hero-mern",
+      "year": "2024",
+      "title": "MERN Stack Web Development Bootcamp",
+      "type": "education",
+      "description": "Completed Programming Hero's comprehensive MERN stack focused web development course. Mastered React, Node.js, Express, and MongoDB end-to-end.",
+      "tags": ["MERN Stack", "React", "Node.js", "MongoDB", "Express"]
+    },
+    {
+      "id": "uiux-course",
+      "year": "2024",
+      "title": "UI/UX Design Foundation",
+      "type": "education",
+      "description": "Enrolled and completed UI/UX design course. Learned design fundamentals, user research, and prototyping to build better user experiences.",
+      "tags": ["Figma", "UI Design", "UX Research", "Prototyping"]
+    },
+    {
+      "id": "self-taught-start",
+      "year": "2023",
+      "title": "Started Self-Taught Coding Journey",
+      "type": "start",
+      "description": "Taught myself HTML, CSS, WordPress, and XAMPP localhost setup. Built my first websites and started exploring web development.",
+      "tags": ["HTML", "CSS", "WordPress", "XAMPP", "Web Basics"]
+    }
+  ]
+}

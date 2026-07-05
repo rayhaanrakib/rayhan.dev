@@ -1,0 +1,63 @@
+{
+  "categories": [
+    {
+      "name": "Frontend",
+      "skills": [
+        { "name": "React.js", "icon": "react" },
+        { "name": "Next.js", "icon": "nextjs" },
+        { "name": "JavaScript", "icon": "javascript" },
+        { "name": "TypeScript", "icon": "typescript" },
+        { "name": "React Router", "icon": "react-router" },
+        { "name": "React Query", "icon": "react-query" },
+        { "name": "React Hook Form", "icon": "react-hook-form" },
+        { "name": "Tailwind CSS", "icon": "tailwindcss" },
+        { "name": "Material UI", "icon": "material-ui" },
+        { "name": "HTML5", "icon": "html5" },
+        { "name": "CSS3", "icon": "css" },
+        { "name": "Bootstrap", "icon": "bootstrap" }
+      ]
+    },
+    {
+      "name": "Backend & Database",
+      "skills": [
+        { "name": "Node.js", "icon": "nodejs" },
+        { "name": "Express.js", "icon": "express" },
+        { "name": "MongoDB", "icon": "mongodb" },
+        { "name": "PostgreSQL", "icon": "postgresql" },
+        { "name": "Prisma", "icon": "prisma" },
+        { "name": "NeonDB", "icon": "neondb" },
+        { "name": "JWT", "icon": "jwt" },
+        { "name": "Firebase", "icon": "firebase" },
+        { "name": "Supabase", "icon": "supabase" }
+      ]
+    },
+    {
+      "name": "Tools & Platforms",
+      "skills": [
+        { "name": "Git", "icon": "git" },
+        { "name": "GitHub", "icon": "github" },
+        { "name": "VS Code", "icon": "vscode" },
+        { "name": "Figma", "icon": "figma" },
+        { "name": "Framer", "icon": "framer" },
+        { "name": "Vercel", "icon": "vercel" }
+      ]
+    },
+    {
+      "name": "CMS & E-commerce",
+      "skills": [
+        { "name": "WordPress", "icon": "wordpress" },
+        { "name": "Shopify", "icon": "shopify" },
+        { "name": "Stripe", "icon": "stripe" },
+        { "name": "SSLCommerz", "icon": "sslcommerz" }
+      ]
+    }
+  ],
+  "softSkills": [
+    "Team Collaboration",
+    "Problem Solving",
+    "Time Estimation",
+    "Active Listening",
+    "Attention to Detail",
+    "Clear Communication"
+  ]
+}

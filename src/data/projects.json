@@ -1,0 +1,109 @@
+{
+  "projects": [
+    {
+      "id": "go-student-classroom",
+      "slug": "go-student-classroom",
+      "name": "Go Student Classroom",
+      "tagline": "Full-stack online learning platform with role-based dashboards and payments",
+      "coverImage": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop",
+      "timeline": "7 days",
+      "category": "Full-Stack",
+      "featured": true,
+      "description": "A comprehensive online classroom platform built with the MERN stack. Features role-based dashboards for students, teachers, and admins, secure Firebase authentication, teacher request management workflows, and Stripe-powered payment processing for course enrollment.",
+      "techStack": ["React.js", "Tailwind CSS", "React Hook Form", "Firebase", "TanStack Query", "Stripe", "Node.js", "Express", "MongoDB"],
+      "highlightFeatures": [
+        "One adaptive dashboard shell that reconfigures itself per user type (student/teacher), instead of maintaining separate codebases for each role — less duplication, easier to extend.",
+        "Payment completion and enrollment status stay in sync automatically via TanStack Query cache invalidation — no \"did my payment actually go through\" limbo screen.",
+        "Took a three-sided platform (student, teacher, payments) from zero to fully working in a 7-day solo build."
+      ],
+      "challenges": [
+        "Coordinating three distinct dashboard permission levels without duplicating component logic — solved by creating a unified permission hook and conditional rendering system",
+        "Keeping Stripe payment state synchronized with enrollment status across frontend and backend",
+        "Implementing proper cache invalidation with TanStack Query after payment completion to reflect updated enrollment immediately"
+      ],
+      "improvements": [
+        "Implement server-side route guards to complement client-side protection",
+        "Replace polling with webhook-driven Stripe status updates",
+        "Add automated end-to-end tests for the payment flow",
+        "Build a course content management system for teachers"
+      ],
+      "metrics": [
+        { "label": "Components", "value": "45+", "note": "// TODO: verify exact count" },
+        { "label": "API Endpoints", "value": "20+", "note": "// TODO: verify" },
+        { "label": "Build Time", "value": "7 days", "note": "Solo development" }
+      ],
+      "liveUrl": "#",
+      "githubUrl": "#"
+    },
+    {
+      "id": "sian-boutique",
+      "slug": "sian-boutique",
+      "name": "Sian Boutique",
+      "tagline": "Modern e-commerce storefront with real-time updates and smooth interactions",
+      "coverImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
+      "timeline": "5 days",
+      "category": "E-Commerce",
+      "featured": true,
+      "description": "A full e-commerce storefront with product browsing, search, advanced filtering, and order management, backed by dynamic APIs and Firebase auth.",
+      "techStack": ["React.js", "Tailwind CSS", "Firebase", "Glide.js", "Framer Motion", "Node.js", "Express", "MongoDB"],
+      "highlightFeatures": [
+        "A multi-attribute filter engine (price, size, category, and more, combined) that stays fast as the catalog grows — not a single dropdown pretending to be a filter system.",
+        "Orders update live the moment they change, no page refresh — the storefront and the order pipeline stay in sync in real time.",
+        "Product browsing tuned with Framer Motion so the carousel feels like a native app interaction, not a bolted-on template slider."
+      ],
+      "challenges": [
+        "Building filter logic that stays performant as the product catalog scales — implemented client-side filtering with memoization",
+        "Preventing Glide.js carousel and Framer Motion transitions from conflicting on mobile touch events",
+        "Managing complex state for cart, filters, and search simultaneously without prop drilling"
+      ],
+      "improvements": [
+        "Implement server-side pagination for large product catalogs",
+        "Build a complete cart and multi-step checkout flow",
+        "Add wishlist functionality with user persistence",
+        "Implement inventory tracking and out-of-stock indicators"
+      ],
+      "metrics": [
+        { "label": "Filter Types", "value": "5+", "note": "Combined filtering" },
+        { "label": "Animations", "value": "15+", "note": "Micro-interactions" },
+        { "label": "Build Time", "value": "5 days", "note": "Solo development" }
+      ],
+      "liveUrl": "#",
+      "githubUrl": "#"
+    },
+    {
+      "id": "my-drive",
+      "slug": "my-drive",
+      "name": "My Drive",
+      "tagline": "Cloud file hosting with real-time sync and custom drag-and-drop",
+      "coverImage": "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=800&h=500&fit=crop",
+      "timeline": "3 days",
+      "category": "Utility",
+      "featured": false,
+      "description": "A cloud-based file hosting and sharing platform with drag-and-drop uploads, folder organization, and file activity tracking. Powered by Firebase Storage and Realtime Database.",
+      "techStack": ["React.js", "Tailwind CSS", "Firebase Storage", "Firebase Realtime DB", "React DnD"],
+      "highlightFeatures": [
+        "Nested folder hierarchies sync in real time through Firebase — move or rename a file and every open view updates instantly, no manual refresh or polling.",
+        "Drag-and-drop upload flow built from scratch (not a wrapped library) — handles multi-file drops, per-file progress, and folder targeting.",
+        "A file-activity trail showing exactly when and where each file was touched — a layer of visibility most weekend-project drive clones skip entirely."
+      ],
+      "challenges": [
+        "Structuring Firebase's Realtime Database to handle deeply nested folder hierarchies efficiently",
+        "Handling large file uploads without blocking the main UI thread",
+        "Implementing proper loading states and progress indicators for concurrent uploads"
+      ],
+      "improvements": [
+        "Implement chunked and resumable uploads for large files",
+        "Add shareable links with configurable expiration dates",
+        "Build a storage quota system with usage visualization",
+        "Add file version history and restore functionality"
+      ],
+      "metrics": [
+        { "label": "Max Upload", "value": "50MB", "note": "Per file limit" },
+        { "label": "File Types", "value": "20+", "note": "Supported formats" },
+        { "label": "Build Time", "value": "3 days", "note": "Solo development" }
+      ],
+      "liveUrl": "#",
+      "githubUrl": "#"
+    }
+  ]
+}
