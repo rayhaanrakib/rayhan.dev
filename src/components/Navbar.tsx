@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal } from 'lucide-react';
-import { useActiveSection } from '@/hooks/useScrollPosition';
+import { useScrollPosition, useActiveSection } from '@/hooks/useScrollPosition';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const navLinks = [
@@ -11,6 +12,45 @@ const navLinks = [
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
 ];
+
+function LiveClock() {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      const hours24 = now.getHours();
+      const period = hours24 >= 12 ? 'PM' : 'AM';
+      const hours12 = hours24 % 12 || 12;
+      const h = String(hours12).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+
+      // Compute GMT offset string like "GMT+6" or "GMT-5"
+      const offsetMin = -now.getTimezoneOffset();
+      const sign = offsetMin >= 0 ? '+' : '-';
+      const absHours = Math.floor(Math.abs(offsetMin) / 60);
+      const absMinutes = Math.abs(offsetMin) % 60;
+      const offsetStr = absMinutes > 0
+        ? `GMT${sign}${absHours}:${String(absMinutes).padStart(2, '0')}`
+        : `GMT${sign}${absHours}`;
+
+      setTime(`${h}:${m}:${s} ${period} ${offsetStr}`);
+    };
+
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!time) return null;
+
+  return (
+    <span className="font-mono text-sm tabular-nums text-accent">
+      {time}
+    </span>
+  );
+}
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -68,16 +108,9 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Resume CTA */}
+            {/* Live Clock — replaces Resume button */}
             <div className="hidden md:block">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-sm font-medium text-black bg-accent rounded-md hover:bg-[#a5e0fc] transition-colors"
-              >
-                Resume
-              </a>
+              <LiveClock />
             </div>
 
             {/* Mobile Menu Toggle */}
