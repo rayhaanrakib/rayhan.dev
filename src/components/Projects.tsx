@@ -19,7 +19,7 @@ function ProjectCard({
       onClick={onSelect}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group block w-full text-left focus:outline-none focus:ring-0 rounded-2xl h-full"
+      className="group block w-full text-left focus:outline-none focus:ring-0 not-visited:focus:ring-offset-0 outline-none rounded-2xl h-full"
       aria-label={`View details for ${project.name}`}
     >
       <motion.article
@@ -33,7 +33,7 @@ function ProjectCard({
           <img
             src={project.coverImage}
             alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform"
             loading="lazy"
           />
           {/* Dark vignette */}
@@ -49,11 +49,6 @@ function ProjectCard({
               {project.timeline}
             </span>
           </div>
-
-          {/* Featured dot */}
-          {project.featured && (
-            <div className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#00c8b3] shadow-[0_0_8px_2px_rgba(125,211,252,0.5)] z-10" />
-          )}
 
           {/* Hover overlay */}
           <motion.div
