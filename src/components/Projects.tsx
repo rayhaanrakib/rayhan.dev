@@ -52,7 +52,7 @@ function ProjectCard({
 
           {/* Featured dot */}
           {project.featured && (
-            <div className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#7dd3fc] shadow-[0_0_8px_2px_rgba(125,211,252,0.5)] z-10" />
+            <div className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#00c8b3] shadow-[0_0_8px_2px_rgba(125,211,252,0.5)] z-10" />
           )}
 
           {/* Hover overlay */}
@@ -62,7 +62,7 @@ function ProjectCard({
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.25 }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#7dd3fc] px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-[#7dd3fc]/25">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#00c8b3] px-5 py-2.5 text-sm font-semibold text-black shadow-lg shadow-[#00c8b3]/25">
               View Details <ArrowUpRight size={16} />
             </span>
           </motion.div>
@@ -88,7 +88,7 @@ function ProjectCard({
           </div>
 
           {/* Title */}
-          <h3 className="font-display text-xl font-semibold text-white transition-colors duration-300 group-hover:text-[#7dd3fc]">
+          <h3 className="font-display text-xl font-semibold text-white transition-colors duration-300 group-hover:text-[#00c8b3]">
             {project.name}
           </h3>
 
@@ -144,7 +144,7 @@ export default function Projects() {
   return (
     <section id="projects" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Ambient glow */}
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#7dd3fc]/[0.04] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#00c8b3]/[0.04] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* ── Section header + Terminal side-by-side on desktop ── */}

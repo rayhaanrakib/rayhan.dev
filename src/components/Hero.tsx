@@ -144,7 +144,7 @@ export default function Hero() {
               <MapPin className="w-4 h-4" />
               <span>{profile.location}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] ml-3 animate-pulse" />
-              <span className="text-[#4ade80]">Available for work</span>
+              <span className="text-[#4ade80]">{profile.status}</span>
             </motion.div>
 
             {/* CTAs with magnetic effect */}

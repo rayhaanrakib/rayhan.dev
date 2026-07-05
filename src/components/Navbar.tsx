@@ -110,7 +110,7 @@ export default function Navbar() {
               </button>
             ))}
             <a
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1aScmah_mpoAZw5wjZtPSoOjBDw1AmDHJ/view?usp=sharing"
               target="_blank"
               className="mt-4 px-6 py-3 text-black bg-accent rounded-md font-medium"
             >

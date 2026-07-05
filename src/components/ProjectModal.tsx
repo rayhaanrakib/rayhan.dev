@@ -124,7 +124,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* ─── LEFT COLUMN ─── */}
                 <div>
                   {/* Eyebrow */}
-                  <span className="font-mono text-[11px] text-[#7dd3fc]/50 uppercase tracking-wider mb-1.5 inline-block">
+                  <span className="font-mono text-[11px] text-[#00c8b3]/50 uppercase tracking-wider mb-1.5 inline-block">
                     // project.{project.slug}
                   </span>
 
@@ -158,7 +158,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-[#7dd3fc] px-4 py-2 text-sm font-semibold text-black transition-shadow hover:shadow-[0_0_20px_rgba(125,211,252,0.3)]"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#00c8b3] px-4 py-2 text-sm font-semibold text-black transition-shadow hover:shadow-[0_0_20px_rgba(125,211,252,0.3)]"
                       >
                         <ExternalLink size={14} /> Live Site
                       </a>
@@ -193,7 +193,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           transition={{ delay: 0.1 + i * 0.06 }}
                           className="flex items-start gap-2.5 rounded-xl glass p-3"
                         >
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#7dd3fc]/10 text-[11px] font-bold text-[#7dd3fc]">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00c8b3]/10 text-[11px] font-bold text-[#00c8b3]">
                             {i + 1}
                           </span>
                           <span className="text-[13px] leading-relaxed text-white/50">
@@ -219,7 +219,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                   {/* Tech Stack */}
                   <div className="glass rounded-xl p-4">
-                    <div className="mb-3 flex items-center gap-2 text-[#7dd3fc]">
+                    <div className="mb-3 flex items-center gap-2 text-[#00c8b3]">
                       <Layers size={16} />
                       <h3 className="font-display text-sm font-semibold text-white">
                         Tech Stack
@@ -239,7 +239,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                   {/* Challenges */}
                   <div className="glass rounded-xl p-4">
-                    <div className="mb-3 flex items-center gap-2 text-[#7dd3fc]">
+                    <div className="mb-3 flex items-center gap-2 text-[#00c8b3]">
                       <AlertTriangle size={16} />
                       <h3 className="font-display text-sm font-semibold text-white">
                         Challenges

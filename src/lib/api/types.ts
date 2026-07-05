@@ -13,6 +13,7 @@ export interface Profile {
   location: string;
   photoUrl: string;
   resumeUrl: string;
+  status: string;
   about: {
     intro: string;
     journey: string;
