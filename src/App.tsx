@@ -10,6 +10,8 @@ import Journey from '@/components/Journey';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import Services from './components/ServicesSection';
+
 
 function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const prefersReducedMotion = useReducedMotion();
@@ -32,7 +34,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         transition={{ duration: 0.4, type: 'spring' }}
         className="relative mb-8 rounded-2xl"
       >
-          <img className='w-10 h-10' src="/images/favicon.svg" alt="Rakibul Islam Rayhan" />
+        <img className='w-10 h-10' src="/images/favicon.svg" alt="Rakibul Islam Rayhan" />
         <motion.div
           className="absolute -inset-3 rounded-xl border border-accent/50 rounded-2xl"
           animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
@@ -121,8 +123,9 @@ export default function App() {
             <Hero />
             <About />
             <Skills />
-            <Journey />
             <Projects />
+            <Services />
+            <Journey />
             <Contact />
           </main>
           <Footer />

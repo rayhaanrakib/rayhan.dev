@@ -33,9 +33,8 @@ export default function Footer() {
               fontSize: "clamp(4rem, 15vw, 10rem)",
               letterSpacing: "0.01em",
             }}
-            className="text-white/[0.1] select-none leading-none"
-          >
-            Rakibul Islam
+            className="text-white/[0.5] select-none leading-none"
+          >Rakibul Islam
           </motion.p>
 
           {/* Designation */}
@@ -44,7 +43,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-3 text-xs sm:text-sm font-mono text-white/15 tracking-widest uppercase"
+            className="my-3 text-xs sm:text-sm font-mono text-white/75 tracking-widest uppercase"
           >
             Full-Stack Developer
           </motion.p>

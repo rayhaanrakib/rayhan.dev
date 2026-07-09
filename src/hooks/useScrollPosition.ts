@@ -21,7 +21,7 @@ export function useScrollPosition() {
 }
 
 export function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '');
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -8,8 +8,9 @@ const navLinks = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
-  { id: 'journey', label: 'Journey' },
   { id: 'projects', label: 'Projects' },
+  { id: 'services', label: 'Services' },
+  { id: 'journey', label: 'Journey' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -99,11 +100,10 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`text-sm transition-all duration-300 relative ${
-                    activeSection === link.id
+                  className={`text-sm transition-all duration-300 relative ${activeSection === link.id
                       ? 'text-accent font-medium'
                       : 'text-white/50 hover:text-white/80'
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {activeSection === link.id && (
@@ -146,11 +146,10 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   onClick={() => handleNavClick(link.id)}
-                  className={`text-2xl font-display font-medium transition-all duration-300 ${
-                    activeSection === link.id
+                  className={`text-2xl font-display font-medium transition-all duration-300 ${activeSection === link.id
                       ? 'text-accent scale-110'
                       : 'text-white/60 hover:text-white/80'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </motion.button>
