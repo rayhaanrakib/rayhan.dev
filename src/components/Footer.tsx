@@ -22,8 +22,6 @@ export default function Footer() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(125,211,252,0.16),transparent_38%)]" />
 
-        {/* <div className="absolute inset-0 opacity-[0.10] bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:28px_28px]" /> */}
-
         {/* logo */}
         <div className="absolute inset-0 flex items-center justify-center">
           <img
@@ -60,7 +58,7 @@ export default function Footer() {
                 </span>
               </div>
 
-              <h2 className="text-center text-[clamp(2.6rem,8vw,6rem)] font-semibold leading-[0.92] tracking-[-0.06em] lg:text-left">
+              <h2 className="text-center text-[clamp(2rem,6vw,4rem)] font-semibold leading-[0.92] tracking-[-0.06em] lg:text-left">
                 Open to the right
                 <br className="hidden sm:block" />
                 opportunity<span className="text-white/35">.</span>
@@ -72,7 +70,7 @@ export default function Footer() {
                 scalable development, and strong attention to performance and detail.
               </p>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap justify-center lg:justify-start">
                 <a
                   href="mailto:rayhaanrakib@gmail.com"
                   className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-black transition-all duration-300 hover:bg-[#7dd3fc] sm:w-auto"
@@ -140,7 +138,7 @@ export default function Footer() {
                   </p>
                 </div>
 
-                <div className="border-b border-white/10 pb-6">
+                <div className="border-b lg:border-none border-white/10 pb-6">
                   <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-white/30">
                     02 / Quick Facts
                   </p>
@@ -160,7 +158,7 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <div className="">
+                <div className="block lg:hidden">
                   <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-white/30">
                     03 / Profiles
                   </p>
@@ -201,9 +199,8 @@ export default function Footer() {
           </div>
 
           {/* Bottom strip */}
-          <div className="flex flex-col gap-3 border-t border-white/10 px-6 py-5 text-[11px] uppercase tracking-[0.22em] text-white/35 sm:px-8 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-6">
+          <div className="flex flex-row gap-3 border-t border-white/10 px-6 py-5 text-[11px] uppercase tracking-[0.22em] text-white/35 sm:px-8 md:px-10 items-center justify-between lg:px-14 lg:py-6">
             <p>© {new Date().getFullYear()} Rakibul Islam Rayhan</p>
-            <p className="text-white/25">Open to opportunities worldwide</p>
             <a
               href="#top"
               className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-white/70"

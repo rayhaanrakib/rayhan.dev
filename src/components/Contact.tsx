@@ -240,10 +240,14 @@ export default function Contact() {
 
                 {/* Response hint */}
                 <div className="mt-6 rounded-2xl border border-white/5 bg-white/[0.02] p-4">
-                  <p className="text-xs leading-relaxed text-white/35">
-                    I typically respond within{' '}
-                    <span className="text-white/55">24 hours</span>. For
-                    urgent inquiries, WhatsApp works best.
+                  <p className="text-center text-xs text-white/25">
+                    Prefer direct email?{' '}
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="text-accent transition-colors hover:text-[#a5e0fc]"
+                    >
+                      {contact.email}
+                    </a>
                   </p>
                 </div>
               </div>
@@ -308,7 +312,7 @@ export default function Contact() {
                         setMessage(e.target.value);
                         clearFeedback();
                       }}
-                      placeholder="Tell me about the role, your team, or what you're looking for..."
+                      placeholder="Tell me what you're looking for..."
                       required
                       minLength={10}
                       rows={8}
@@ -366,15 +370,7 @@ export default function Contact() {
                     )}
                   </motion.button>
 
-                  <p className="mt-4 text-center text-xs text-white/25">
-                    Prefer direct email?{' '}
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="text-accent transition-colors hover:text-[#a5e0fc]"
-                    >
-                      {contact.email}
-                    </a>
-                  </p>
+
                 </div>
               </form>
             </motion.div>
